@@ -1,0 +1,49 @@
+<div class="dashboard">
+  <div class="row">
+    <div *ngFor="let carro of listaCarros" class="col-4">
+      <app-cartao
+        [numeroCarrinho]="carro.id"
+        *ngIf="user$ | async as user"
+        class="m-1"
+        [class.cartao-inativo]="carro.ativo == false"
+        [class.cartao-excluido]="carro.deletado == true"
+      >
+        <div class="actions-wrappers">
+          <span>
+            <h6>Ultimo Emprestimo:</h6>
+            <p>{{ carro.ultimoEmprestimo | date: "short" }}</p>
+          </span>
+          <span>
+            <h6>Situação de emprestimo:</h6>
+            <p>{{ carro.situacaoTexto }}</p>
+          </span>
+
+          <div *ngIf="user.name == 'admin'" class="admin-actions">
+            <div class="switch-wrapper">
+              <label for="ativo">Ativo:</label>
+
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="carro.ativo"
+                  (change)="verficaSituacaoEmprestimo()"
+                />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <br />
+
+            <button
+              type="button"
+              class="btn btn-primary"
+
+              (click)="liberarCarrinho(carro)"
+            >
+              Liberar
+            </button>
+          </div>
+        </div>
+      </app-cartao>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.form-wrapper {
+  position: absolute;
+  opacity: 1;
+  padding: 2rem;
+  top:10%;
+  left: 25%;
+  width: 730px;
+  height: 450px;
+  background-color: rgba(200, 195, 234, 0.5);
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input{
+  width: 350px;
+  height: 50px;
+
+}
+
+button{
+  width: 175px;
+  height: 50px;
+}
